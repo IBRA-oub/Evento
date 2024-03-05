@@ -18,9 +18,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'fullName',
         'email',
         'password',
+        'role',
+        'picture'
     ];
 
     /**
@@ -42,4 +44,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    public function event(){
+        return $this->hasMany(Event::class);
+    }
+
+    public function reservation(){
+        return $this->hasMany(Reservation::class);
+    }
 }
