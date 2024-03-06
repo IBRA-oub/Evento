@@ -31,16 +31,34 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'fullName' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required'],
+            'picture_user' => ['required'],
+            'role'=>['required']
         ]);
 
+        $imageName = time() . '.' . $request->picture_user->extension();
+        $request->file('picture_user')->storeAs('public/userPics', $imageName);
+
+        if($request->role === 'client'){
         $user = User::create([
-            'name' => $request->name,
+            'fullName' => $request->fullName,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'picture_user' => $imageName,
+            'role'=> $request->role,
         ]);
+    }
+        elseif($request->role === 'organisateur'){
+            $user = User::create([
+                'fullName' => $request->fullName,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'picture_user' => $imageName,
+                'role'=> $request->role,
+            ]); 
+        }
 
         event(new Registered($user));
 
