@@ -9,4 +9,9 @@ class EventController extends Controller
     public function allEvantAffichage(){
         return view('all-event');
     }
+    public function evantDetailleAffichage(){
+        return view('event-detaille');
+    }
+
+    
 }

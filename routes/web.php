@@ -34,4 +34,5 @@ require __DIR__.'/auth.php';
 Route::group([], function() {
     
     Route::get('/all-event', [EventController::class, 'allEvantAffichage'])->name('all-event');
+    Route::get('/event-detaille', [EventController::class, 'evantDetailleAffichage'])->name('event-detaille');
 });
