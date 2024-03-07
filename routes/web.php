@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\ClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,8 +32,17 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+// _________________les pages le client peut consulter_________________
 Route::group([], function() {
     
     Route::get('/all-event', [EventController::class, 'allEvantAffichage'])->name('all-event');
     Route::get('/event-detaille', [EventController::class, 'evantDetailleAffichage'])->name('event-detaille');
+});
+
+
+// ____________________client ticket_________________________
+Route::group([], function() {
+
+    Route::get('/client-tickets', [ClientController::class, 'clientTichketsAffichage'])->name('client-tickets');
+
 });
