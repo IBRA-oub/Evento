@@ -53,7 +53,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#event-up">
+                    <a class="nav-link" href="/all-event">
                       event
                     </a>
                   </li>
@@ -72,7 +72,7 @@
                     </li>
                     <li class="nav-item">
                                 @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="nav-link" style=" margin-left:15px; padding: 0px 15px 0px 15px; border: solid 1px #e83e8c;  border-radius:5px; background-color:#e83e8c; color:white;">Register</a>
+                                    <a href="{{ route('register') }}" class="nav-link" style=" margin-left:15px; padding: 0px 15px 0px 15px; border: solid 1px #413ee8;  border-radius:5px; background-color:#3e41e8; color:white;">Register</a>
                                 @endif
                             @endauth
                         </div>
