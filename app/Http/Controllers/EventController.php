@@ -20,5 +20,8 @@ class EventController extends Controller
     public function meEvents(){
         return view('organisateur-pages.me-events');
     }
+    public function editEvent(){
+        return view('organisateur-pages.edit-event');
+    }
     
 }

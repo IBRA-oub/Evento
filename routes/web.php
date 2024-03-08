@@ -56,5 +56,6 @@ Route::group([], function() {
     Route::get('/confirmation-tickets', [OrganisateurController::class, 'confirmationTickets'])->name('confirmation-tickets');
     Route::get('/creat-event', [EventController::class, 'createEvent'])->name('creat-event');
     Route::get('/mes-events', [EventController::class, 'meEvents'])->name('me-events');
+    Route::get('/edit-event', [EventController::class, 'editEvent'])->name('edit-event');
 
 });
