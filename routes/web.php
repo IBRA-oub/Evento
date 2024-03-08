@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\OrganisateurController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,4 +60,15 @@ Route::group([], function() {
     Route::get('/mes-events', [EventController::class, 'meEvents'])->name('me-events');
     Route::get('/edit-event', [EventController::class, 'editEvent'])->name('edit-event');
 
+});
+
+// ________________________admin pages__________________________
+Route::group([], function() {
+    Route::get('/admin-dashboard', [AdminController::class, 'dashboard'])->name('admin-dashboard');
+    Route::get('/confirmation-event', [AdminController::class, 'confirmationEvent'])->name('confirmation-event');
+    Route::get('/add-category', [AdminController::class, 'addCategories'])->name('add-category');
+    Route::get('/update-category', [AdminController::class, 'updateCategories'])->name('update-category');
+    Route::get('/categories', [CategoryController::class, 'categories'])->name('categories');
+    Route::get('/users', [AdminController::class, 'allUsers'])->name('users');
+    
 });
