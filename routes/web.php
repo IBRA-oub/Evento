@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\OrganisateurController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,8 +42,19 @@ Route::group([], function() {
 
 
 // ____________________client ticket_________________________
+
 Route::group([], function() {
 
     Route::get('/client-tickets', [ClientController::class, 'clientTichketsAffichage'])->name('client-tickets');
+
+});
+
+// ______________________organisateur pages________________________
+Route::group([], function() {
+
+    Route::get('/organisateur-dashboard', [OrganisateurController::class, 'dashboard'])->name('organisateur-dashboard');
+    Route::get('/confirmation-tickets', [OrganisateurController::class, 'confirmationTickets'])->name('confirmation-tickets');
+    Route::get('/creat-event', [EventController::class, 'createEvent'])->name('creat-event');
+    Route::get('/mes-events', [EventController::class, 'meEvents'])->name('me-events');
 
 });
