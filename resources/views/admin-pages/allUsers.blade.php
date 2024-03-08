@@ -87,10 +87,10 @@
                      <tr class="block pt-10 sm:pt-0   w-full ">
  
                          <td data-label="id"
-                             class="border-b before:content-['id']  before:absolute before:left-0 before:w-1/2 before:font-bold before:text-left before:pl-2 sm:before:hidden sm:text-center block    text-right">
+                             class="border-b before:content-['id']  before:absolute before:left-20 before:w-1/2 before:font-bold before:text-left before:pl-2 sm:before:hidden sm:text-center block    text-right">
                            3
                          </td>
-                         <td data-label="nameCategorie" class="border-b before:content-['nameCategorie'] before:absolute before:left-0 before:w-1/2 before:font-bold before:text-left before:pl-2 block  sm:before:hidden sm:text-center 
+                         <td data-label="nameCategorie" class="border-b before:content-['nameCategorie'] before:absolute before:left-20 before:w-1/2 before:font-bold before:text-left before:pl-2 block  sm:before:hidden sm:text-center 
                               text-right">
                             hjkl
                          </td>
@@ -98,7 +98,7 @@
                         
  
                          <td data-label="ACtion"
-                             class="border-b before:content-['action'] before:absolute before:left-0 before:w-1/2 before:font-bold before:text-left before:pl-2  sm:before:hidden  sm:text-center block    text-right">
+                             class="border-b before:content-['action'] before:absolute before:left-20 before:w-1/2 before:font-bold before:text-left before:pl-2  sm:before:hidden  sm:text-center block    text-right">
                              <button class="bg-blue-800 text-white w-8 h-[35px] rounded-md">
                                  <a href="/update-category">
                                      <i class="fa-solid fa-pen " style="color:#fbfbfb"></i>
