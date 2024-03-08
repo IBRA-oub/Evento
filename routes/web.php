@@ -67,8 +67,11 @@ Route::group([], function() {
     Route::get('/admin-dashboard', [AdminController::class, 'dashboard'])->name('admin-dashboard');
     Route::get('/confirmation-event', [AdminController::class, 'confirmationEvent'])->name('confirmation-event');
     Route::get('/add-category', [AdminController::class, 'addCategories'])->name('add-category');
-    Route::get('/update-category', [AdminController::class, 'updateCategories'])->name('update-category');
-    Route::get('/categories', [CategoryController::class, 'categories'])->name('categories');
     Route::get('/users', [AdminController::class, 'allUsers'])->name('users');
+    Route::get('/edit-category/{id}', [CategoryController::class, 'editCategories'])->name('edit-category');
+    Route::post('/creat-category', [CategoryController::class, 'creatCategories'])->name('category.create');
+    Route::put('/update-category/{id}', [CategoryController::class, 'updateCategories'])->name('category.update');
+    Route::delete('/delete-category/{id}', [CategoryController::class, 'destroyCategory'])->name('category.delete');
+    Route::get('/categories', [CategoryController::class, 'redCategoriesAdmin'])->name('categories');
     
 });

@@ -22,7 +22,5 @@ class AdminController extends Controller
         return view('admin-pages.add-category');
     }
 
-    public function updateCategories(){
-        return view('admin-pages.update-category');
-    }
+   
 }

@@ -99,7 +99,7 @@
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../javascript/client.js"></script>
-    {{-- <script>
+    <script>
         // Masquer le message de succès après 3 secondes
         setTimeout(function() {
             var successAlert = document.getElementById('success-alert');
@@ -107,7 +107,7 @@
                 successAlert.style.display = 'none';
             }
         }, 3000); // 3000 millisecondes = 3 secondes
-    </script> --}}
+    </script>
 </body>
 
 </html>

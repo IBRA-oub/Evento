@@ -9,7 +9,9 @@
     <div class="flex items-center justify-center p-12 ml-10 md:ml-0">
        
         <div class="mx-auto w-full max-w-[550px]">
-          <form action="https://formbold.com/s/FORM_ID" method="POST">
+          <form action="{{route('category.update',['id'=>$category->id])}}" method="POST">
+            @csrf
+            @method('PUT')
             {{-- ______________name__________ --}}
             <div class="-mx-3 ">
               <div class="w-full px-3 ">
@@ -19,7 +21,8 @@
                   <label for="name" class="mb-3 block text-base font-medium text-[#07074D]"  >
                     New name
                   </label>
-                  <input type="text" name="name" id="name" placeholder="misic"  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                  <input type="text" name="name" id="name" placeholder="misic"  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" value="{{$category->name}}"/>
+                  <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 </div>
               </div>
             </div>
