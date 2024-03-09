@@ -5,15 +5,16 @@
 <main class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-200 min-h-screen transition-all main">
    
     @if($events->isNotEmpty()) 
+    @if (session('success'))
+    <div id="success-alert" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+        <strong class="font-bold">Success!</strong>
+        <span class="block sm:inline">{{ session('success') }}</span>
+    </div>
+    @endif
     @foreach($events as $event)
  
           <div class="  flex flex-col items-center justify-center "> 
-            @if (session('success'))
-            <div id="success-alert" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
-                <strong class="font-bold">Success!</strong>
-                <span class="block sm:inline">{{ session('success') }}</span>
-            </div>
-            @endif
+           
           <div class=" mt-8  w-[80%] ">
          <div class="flex flex-col">
              <div class="bg-white shadow-md  rounded-3xl p-4 ">
@@ -73,30 +74,30 @@
                              <div class="flex-auto flex space-x-3">
                                  {{-- ______________type validation___________ --}}
                                  <div
-                                     class="mb-2 md:mb-0 bg-white px-4 py-2 shadow-sm tracking-wider border text-gray-600 rounded-full hover:bg-gray-100 inline-flex items-center space-x-2 ">
+                                     class="mb-2 md:mb-0 bg-white px-4 py-2 shadow-sm tracking-wider border text-gray-600 rounded-full  inline-flex items-center space-x-2 ">
                                      
                                      <span>{{$event->type_validation}}</span>
                                  </div>
                                  {{-- ________________confirmation status__________ --}}
                                  @if($event->status === 'pending')
                                  <div
-                                    class="mb-2 md:mb-0 bg-gray-200 px-4 py-2 shadow-sm tracking-wider border text-gray-600 rounded-full hover:bg-gray-100 inline-flex items-center space-x-2 ">
+                                    class="mb-2 md:mb-0 bg-gray-200 px-4 py-2 shadow-sm tracking-wider border text-gray-600 rounded-full  inline-flex items-center space-x-2 ">
                                 
                                     <span>status: pending</span>
                                  </div>
                                  @elseif($event->status === 'accepted')
                                  <div
-                                 class="mb-2 md:mb-0 bg-green-200 px-4 py-2 shadow-sm tracking-wider border text-gray-600 rounded-full hover:bg-gray-100 inline-flex items-center space-x-2 ">
+                                 class="mb-2 md:mb-0 bg-green-200 px-4 py-2 shadow-sm tracking-wider border text-gray-600 rounded-full  inline-flex items-center space-x-2 ">
                              
                                  <span>status: accepted</span>
                                  </div>
-                                 @elseif($event->status === 'refused')
+                                 
                                 </div>
-                                @elseif($event->status === 'accepted')
+                                @elseif($event->status === 'refused')
                                 <div
-                                class="mb-2 md:mb-0 bg-red-400 px-4 py-2 shadow-sm tracking-wider border text-gray-600 rounded-full hover:bg-gray-100 inline-flex items-center space-x-2 ">
+                                class="mb-2 md:mb-0 bg-red-400 px-4 py-2 shadow-sm tracking-wider border text-white rounded-full  inline-flex items-center space-x-2 ">
                             
-                                <span>status: accepted</span>
+                                <span>status: refused</span>
                                 </div>
                                 @endif
                              </div>

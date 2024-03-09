@@ -57,6 +57,10 @@
 
         {{-- detaille de evennement start --}}
         <div>
+            <form action="{{route('reservation.create')}}" method="POST">
+                @csrf
+                <input type="hidden" name="type_validation" value="{{$eventDetaille->type_validation}}">
+                <input type="hidden" name="event_id" value="{{$eventDetaille->id}}">
 
             <div class="block md:flex md:space-x-2 px-2 lg:p-0">
                 <div class="mb-4 md:mb-0 w-full md:w-3/3 relative rounded inline-block" style="height: 24em;">
@@ -108,6 +112,7 @@
     
                     </div>
                 </div>
+           
             </div>
     
           
@@ -135,8 +140,9 @@
                 </div>
             </div>
             <div class="absolute right-10">
-            <a href="" style="background-color: #225aad" class="ml-2 rounded-lg w-full py-2 px-20 mt-5 text-white font-bold">Buy tecket</a>
-        </div>
+            <button type="submit" style="background-color: #225aad" class="ml-2 rounded-lg w-full py-2 px-20 mt-5 text-white font-bold">Buy tecket</button>
+           </div>
+        </form>
         </div>
         
 

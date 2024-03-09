@@ -144,7 +144,7 @@ class EventController extends Controller
        
         
         $refusedEvent= Event::findOrFail($id);
-        $refusedEvent->status = 'accepted';
+        $refusedEvent->status = 'refused';
         $refusedEvent->save();
 
         

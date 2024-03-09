@@ -141,7 +141,12 @@
         {{-- _____________cards section start _____________ --}}
 
 
-        
+        @if (session('success'))
+        <div id="success-alert" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">Success!</strong>
+            <span class="block sm:inline">{{ session('success') }}</span>
+        </div>
+        @endif
             
             <div class="mx-auto container py-8">
                 <div class="flex flex-wrap ">
@@ -205,7 +210,15 @@
                 } else {
                     menu.classList.add('hidden');
                 }
-            });        
+            });     
+
+             // Masquer le message de succès après 3 secondes
+        setTimeout(function() {
+            var successAlert = document.getElementById('success-alert');
+            if (successAlert) {
+                successAlert.style.display = 'none';
+            }
+        }, 3000); // 3000 millisecondes = 3 secondes
     </script>
     </body>
 </html>

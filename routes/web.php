@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReservationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ClientController;
@@ -48,6 +49,7 @@ Route::group([], function() {
 Route::group([], function() {
 
     Route::get('/client-tickets', [ClientController::class, 'clientTichketsAffichage'])->name('client-tickets');
+    Route::post('/reservation', [ReservationController::class, 'createReservation'])->name('reservation.create');
 
 });
 
