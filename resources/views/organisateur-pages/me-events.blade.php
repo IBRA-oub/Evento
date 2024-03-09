@@ -4,7 +4,7 @@
 
 <main class="w-full md:w-[calc(100%-256px)] md:ml-64 bg-gray-200 min-h-screen transition-all main">
    
-
+    @if($events->isNotEmpty()) 
     @foreach($events as $event)
  
           <div class="  flex flex-col items-center justify-center "> 
@@ -117,6 +117,12 @@
      </div>
  </div>
 @endforeach
+@else
+<div class=" text-blue-600 font-bold text-sm md:text-5xl absolute  md:top-1/2 md:right-44 right-20 top-1/2">
+   
+     EMPTY  !! CREATE YOUR EVENT  
+</div>
+@endif
 
 
  

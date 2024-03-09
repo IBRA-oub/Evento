@@ -155,27 +155,40 @@
                          
                         
  
-                         <td data-label="ACtion"
-                             class="border-b before:content-['action'] before:absolute before:left-20 before:w-1/2 before:font-bold before:text-left before:pl-2  sm:before:hidden  sm:text-center block    text-right">
+                         <td data-label="Action  "
+                             class=" border-b before:content-['action'] before:absolute before:left-20 before:w-1/2 before:font-bold before:text-left before:pl-2  sm:before:hidden  sm:text-center block    text-right">
+                             <form action="{{route('banned.user',['id'=>$user->id])}}" method="POST">
+                                @csrf
+                                @method('PUT')
                              <button class="bg-blue-800 text-white w-8 h-[35px] rounded-md">
-                                 <a href="">
+                                 <a >
                                     <i class="fa-solid fa-user-slash" style="color: #ffffff;"></i>
                                  </a>
  
                              </button>
+                             </form>
+
+                             <form action="{{route('destroy.user',['id'=>$user->id])}}" method="POST">
+                                @csrf
+                                @method('DELETE')
                              <button class="bg-blue-800 text-white w-8 h-[35px] rounded-md">
                                  <a
-                                     href="">
+                                     >
                                      <i class="fa-solid fa-trash " style="color:#ffffff"></i></a>
  
                              </button>
+                             </form>
 
+                             <form action="{{route('debanned.user',['id'=>$user->id])}}" method="POST">
+                                @csrf
+                                @method('PUT ')
                              <button class="bg-blue-800 text-white w-8 h-[35px] rounded-md">
                                 <a
-                                    href="">
+                                   >
                                     <i class="fa-solid fa-user" style="color: #ffffff;"></i></a>
 
                             </button>
+                             </form>
  
  
                          </td>

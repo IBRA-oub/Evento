@@ -42,7 +42,7 @@ class EventController extends Controller
         $event->places_available = $request->input('places_available');
         $event->type_validation = $request->input('type_validation');
         $event->category_id = $request->input('category_id');
-        $event->user_id = 1;
+        $event->user_id = 2;
         $event->status = 'pending';
         
         if ($request->hasFile('image')) {
