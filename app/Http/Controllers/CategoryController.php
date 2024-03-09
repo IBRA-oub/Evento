@@ -15,13 +15,15 @@ class CategoryController extends Controller
        
     }
 
-    // _____________affichage de categories pour l'organisateur pour choiser__________
+    // _____________affichage de categories pour l'organisateur pour choiser/ create page__________
     public function redCategoriesOrga(){
         $categories = Category::all();
 
         return view('organisateur-pages.creat-event',['categories' => $categories]);
        
     }
+
+
     // _______________creation de category_______________
     public function creatCategories(Request $request){
 

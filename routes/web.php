@@ -59,7 +59,8 @@ Route::group([], function() {
     Route::get('/creat-event', [CategoryController::class, 'redCategoriesOrga'])->name('creat-event');
     Route::post('/event-store', [EventController::class, 'storeEvent'])->name('event.store');
     Route::get('/mes-events', [EventController::class, 'meEvents'])->name('me-events');
-    Route::get('/edit-event', [EventController::class, 'editEvent'])->name('edit-event');
+    Route::get('/edit-event/{id}', [EventController::class, 'editEvent'])->name('edit-event');
+    Route::put('/update-event/{id}', [EventController::class, 'updateEvent'])->name('event.update');
 
 });
 
