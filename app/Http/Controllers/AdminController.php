@@ -10,9 +10,7 @@ class AdminController extends Controller
         return view('admin-pages.dashboard');
     }
 
-    public function confirmationEvent(){
-        return view('admin-pages.confirmation-event');
-    }
+   
 
     public function allUSers(){
         return view('admin-pages.allUsers');

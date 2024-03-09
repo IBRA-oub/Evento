@@ -17,12 +17,6 @@ class EventController extends Controller
     }
 
     
-
-   
-   
-
-    
-    
     // _____________________creat event/store ________________
 
     public function storeEvent(Request $request){
@@ -63,7 +57,7 @@ class EventController extends Controller
         return redirect()->route('me-events')->with('success', 'event add successfully');
     }
 
-    // _______________________mes events___________________
+    // _______________________mes events organisateur___________________
 
     public function meEvents(){
         $events = Event::all();
@@ -72,7 +66,7 @@ class EventController extends Controller
         
     }
 
-    // __________________edit page event_________________
+    // __________________edit page event organisateur_________________
     
     public function editEvent($id){
         $categories = Category::all();
@@ -80,7 +74,7 @@ class EventController extends Controller
         return view('organisateur-pages.edit-event',['event' => $event ,'categories' => $categories]);
     }
 
-    // ____________________update event________________
+    // ____________________update event organisateur________________
     public function updateEvent(Request $request,$id){
        
         $request->validate([
@@ -119,4 +113,45 @@ class EventController extends Controller
         return redirect()->route('me-events')->with('success', 'event update successfully');
     }
 
+    // ____________________confirmation event/ admin_________________
+
+    public function confirmationEventPage(){
+
+        $pendingEvent = Event::all()->where('status','pending');
+       
+        return view('admin-pages.confirmation-event',['pendingEvent'=>$pendingEvent]);
+    }
+
+
+    // ______________________accepted event/ update status_____________
+
+
+    public function acceptedEvent($id){
+       
+
+       
+        
+        $acceptedEvent= Event::findOrFail($id);
+        $acceptedEvent->status = 'accepted';
+        $acceptedEvent->save();
+
+        
+        return redirect()->route('confirmation-event')->with('success', 'event accepted successfully');
+    }
+
+
+    // ______________________refused event/ update status_______________
+
+      public function refusedEvent($id){
+       
+
+       
+        
+        $refusedEvent= Event::findOrFail($id);
+        $refusedEvent->status = 'accepted';
+        $refusedEvent->save();
+
+        
+        return redirect()->route('confirmation-event')->with('error', 'event refused successfully');
+    }
 }

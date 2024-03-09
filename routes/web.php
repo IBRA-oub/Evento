@@ -67,7 +67,6 @@ Route::group([], function() {
 // ________________________admin pages__________________________
 Route::group([], function() {
     Route::get('/admin-dashboard', [AdminController::class, 'dashboard'])->name('admin-dashboard');
-    Route::get('/confirmation-event', [AdminController::class, 'confirmationEvent'])->name('confirmation-event');
     Route::get('/add-category', [AdminController::class, 'addCategories'])->name('add-category');
     Route::get('/users', [AdminController::class, 'allUsers'])->name('users');
     Route::get('/edit-category/{id}', [CategoryController::class, 'editCategories'])->name('edit-category');
@@ -75,5 +74,8 @@ Route::group([], function() {
     Route::put('/update-category/{id}', [CategoryController::class, 'updateCategories'])->name('category.update');
     Route::delete('/delete-category/{id}', [CategoryController::class, 'destroyCategory'])->name('category.delete');
     Route::get('/categories', [CategoryController::class, 'redCategoriesAdmin'])->name('categories');
+    Route::get('/confirmation-event', [EventController::class, 'confirmationEventPage'])->name('confirmation-event');
+    Route::put('/accepted-event/{id}', [EventController::class, 'acceptedEvent'])->name('accepted.event');
+    Route::put('/refused-event/{id}', [EventController::class, 'refusedEvent'])->name('refused.event');
     
 });
