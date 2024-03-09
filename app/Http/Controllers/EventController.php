@@ -9,12 +9,8 @@ use App\Models\Category;
 
 class EventController extends Controller
 {
-    public function allEvantAffichage(){
-        return view('all-event');
-    }
-    public function evantDetailleAffichage(){
-        return view('event-detaille');
-    }
+   
+    
 
     
     // _____________________creat event/store ________________
@@ -153,5 +149,23 @@ class EventController extends Controller
 
         
         return redirect()->route('confirmation-event')->with('error', 'event refused successfully');
+    }
+
+
+    // ______________________red all accepted event home page __________________
+    
+    public function allEvantAffichage(){
+        
+        $categories = Category::all();
+        $allAccepetedEvent = Event::all()->where('status','accepted');
+        return view('all-event',['allAccepetedEvent'=>$allAccepetedEvent,'categories'=>$categories]);
+    }
+
+    // _____________________event detailles________________
+
+    public function evantDetailleAffichage($id){
+
+        $eventDetaille = Event::findOrFail($id);
+        return view('event-detaille',['eventDetaille'=>$eventDetaille]);
     }
 }

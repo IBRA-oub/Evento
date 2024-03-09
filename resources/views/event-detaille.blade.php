@@ -63,11 +63,11 @@
                     <div class="absolute left-0 bottom-0 w-full h-full z-10"
                         style="background-image: linear-gradient(180deg,transparent,rgba(0,0,0,.7));"></div>
                    
-                 <img src='img/logo.png' class='absolute left-0 top-0 w-full h-full rounded z-0 object-cover' />
+                 <img src='{{asset('/storage/image/'. $eventDetaille->image)}}' class='absolute left-0 top-0 w-full h-full rounded z-0 object-cover' />
                     
                     <div class="p-4 absolute bottom-20 left-20 z-20">
                         <h1 class="text-5xl font-semibold text-gray-100 leading-tight">
-                            Mawasin le meilleur dans le mande
+                           {{$eventDetaille->title}}
                         </h1>
                        
                         
@@ -114,7 +114,7 @@
     
             <div class="px-4 py-10 lg:px-0 mt-12 text-gray-700 max-w-screen-md mx-auto text-lg leading-relaxed w-1/2">
     
-                <p class="pb-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta neque enim assumenda laboriosam adipisci blanditiis maxime hic quisquam at totam! Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod veritatis voluptatum distinctio.</p>
+                <p class="pb-6">{{$eventDetaille->description}}</p>
 
                 <div class="bg-yellow-200 px-1 py-1.5  rounded-full flex mb-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -123,7 +123,7 @@
                         <path d="M5 18v2"></path>
                         <path d="M19 18v2"></path>
                       </svg>
-                    <p tabindex="0" class="focus:outline-none text-xs text-yellow-700">100 places valaible</p>
+                    <p tabindex="0" class="focus:outline-none text-xs text-yellow-700">{{$eventDetaille->places_available}} places valaible</p>
                 </div>
 
                 <div class="text-grey-500 flex flex-row space-x-1 py-4 border-t border-b border-gray-200 my-4">
@@ -131,45 +131,45 @@
                         <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
                         <circle cx="12" cy="10" r="3"></circle>
                       </svg>
-                      <p class="text-xs">Viale Stazione 36, 30171 </p>
+                      <p class="text-xs">{{$eventDetaille->location}} </p>
                 </div>
             </div>
             <div class="absolute right-10">
             <a href="" style="background-color: #225aad" class="ml-2 rounded-lg w-full py-2 px-20 mt-5 text-white font-bold">Buy tecket</a>
         </div>
         </div>
+        
 
         {{-- detaille de evennement end --}}
 
         <script>
          
-            const endDate = new Date('2024-03-10T00:00:00').getTime();
-          
-            
+            let timeString = '{{$eventDetaille->date}}'; 
+            const endDate = new Date(timeString).getTime(); 
+
             function updateCountdown() {
-              const now = new Date().getTime();
-              const distance = endDate - now;
-          
-              const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-              const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-              const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-              const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-          
-              document.getElementById('days').innerText = formatTime(days);
-              document.getElementById('hours').innerText = formatTime(hours);
-              document.getElementById('minutes').innerText = formatTime(minutes);
-              document.getElementById('seconds').innerText = formatTime(seconds);
+            const now = new Date().getTime();
+            const distance = endDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = formatTime(days);
+            document.getElementById('hours').innerText = formatTime(hours);
+            document.getElementById('minutes').innerText = formatTime(minutes);
+            document.getElementById('seconds').innerText = formatTime(seconds);
             }
-          
-            
+
             function formatTime(time) {
-              return time < 10 ? `0${time}` : time;
+            return time < 10 ? `0${time}` : time;
             }
-          
-            
+
+           
             setInterval(updateCountdown, 1000);
-          
-            
+
+           
             updateCountdown();
           </script>
           
