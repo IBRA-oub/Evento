@@ -69,13 +69,17 @@ Route::group([], function() {
     Route::get('/admin-dashboard', [AdminController::class, 'dashboard'])->name('admin-dashboard');
     Route::get('/add-category', [AdminController::class, 'addCategories'])->name('add-category');
     Route::get('/users', [AdminController::class, 'allUsers'])->name('users');
+    Route::put('/banned-user/{id}', [AdminController::class, 'banneUsers'])->name('banned.user');
+    Route::put('/debanned-user/{id}', [AdminController::class, 'debanneUsers'])->name('debanned.user');
+    Route::delete('/destroy-user/{id}', [AdminController::class, 'destroy'])->name('destroy.user');
+    
     Route::get('/edit-category/{id}', [CategoryController::class, 'editCategories'])->name('edit-category');
     Route::post('/creat-category', [CategoryController::class, 'creatCategories'])->name('category.create');
     Route::put('/update-category/{id}', [CategoryController::class, 'updateCategories'])->name('category.update');
     Route::delete('/delete-category/{id}', [CategoryController::class, 'destroyCategory'])->name('category.delete');
     Route::get('/categories', [CategoryController::class, 'redCategoriesAdmin'])->name('categories');
+    
     Route::get('/confirmation-event', [EventController::class, 'confirmationEventPage'])->name('confirmation-event');
     Route::put('/accepted-event/{id}', [EventController::class, 'acceptedEvent'])->name('accepted.event');
     Route::put('/refused-event/{id}', [EventController::class, 'refusedEvent'])->name('refused.event');
-    
 });

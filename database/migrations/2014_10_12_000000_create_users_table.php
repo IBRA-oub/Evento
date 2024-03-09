@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('picture_user');
             $table->enum('role',['admin','organisateur','client']);
+            $table->enum('banned',[0,1]);
             $table->rememberToken();
             $table->timestamps();
         });

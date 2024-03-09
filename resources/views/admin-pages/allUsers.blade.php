@@ -11,10 +11,15 @@
      <!-- ============ Content ============= -->
  
      <div class="md:p-6 bg-white md:m-5">
-         
+        @if (session('success'))
+        <div id="success-alert" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">Success!</strong>
+            <span class="block sm:inline">{{ session('success') }}</span>
+        </div>
+        @endif
  
          <!-- ========== table Banks-desktop ======== -->
- 
+       
          <div class="hidden md:block  rounded-lg overflow-hidden mt-10 w-[95%] items-center ml-10">
              <table class="  
             w-full   " id="table1">
@@ -28,48 +33,79 @@
                          <th class="">Actions</th>
                      </tr>
                  </thead>
+                 @foreach($allUsers as $user)
                  <tbody class="sm:w-full">
                   
  
-                     <tr class=" pt-10 sm:pt-0  w-full ">
+                     <tr class=" pt-10 sm:pt-0  w-full border-b border-blue-400">
  
                          <td class=" text-center ">
-                             3
+                             {{$user->id}}
                          </td>
                          <td class=" text-center ">
-                            fjfjjf
+                            {{$user->fullName}}
                          </td>
                          <td class=" text-center ">
-                            admin@gmail.com
+                            {{$user->email}}
                          </td>
+                         @if($user->role ==='admin')
                          <td class=" text-center ">
-                            admin
+                           <p class="rounded-md bg-red-300 text-red-800"> admin</p>
                          </td>
+                         @elseif($user->role ==='client')
+                         <td class=" text-center ">
+                            <p class="rounded-md bg-green-300 text-green-800"> client</p>
+                          </td>
+                          @elseif($user->role ==='organisateur')
+                          <td class=" text-center ">
+                            <p class="rounded-md bg-blue-300 text-blue-800"> client</p>
+                          </td>
+                          @endif
  
          
-                         <td class="  text-center ">
-                             <button class="bg-blue-800 text-white w-8 h-[35px] rounded-md">
-                                 <a href="/update-category">
+                         <td class="  text-center flex justify-center ">
+                             
+                                <form action="{{route('banned.user',['id'=>$user->id])}}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                <button class="bg-blue-800 text-white w-8 h-[35px] rounded-md mr-2">
+                                 <a >
                                      <i class="fa-solid fa-user-slash" style="color: #ffffff;"></i></a>
  
  
                              </button>
-                             <button class="bg-blue-800 text-white w-8 h-[35px] rounded-md">
+                            </form>
+                            <form action="{{route('destroy.user',['id'=>$user->id])}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                             <button class="bg-blue-800 text-white w-8 h-[35px] rounded-md mr-2">
                                  <a
                                      href=""><i
                                          class="fa-solid fa-trash " style="color:#ffffff"></i></a>
  
                              </button>
- 
- 
+                            </form>
+                            <form action="{{route('debanned.user',['id'=>$user->id])}}" method="POST">
+                                @csrf
+                                @method('PUT ')
+                             
+                             <button class="bg-blue-800 text-white w-8 h-[35px] rounded-md">
+                                <a
+                                    href="">
+                                    <i class="fa-solid fa-user" style="color: #ffffff;"></i></a>
+
+                            </button>
+                            </form>
                          </td>
  
                      </tr>
                
  
                  </tbody>
+                 @endforeach
              </table>
          </div>
+         
          <!-- ========== table Banks-mobile ======== -->
          <div class="block sm:hidden rounded-lg overflow-hidden mt-10 ">
              <table class=" block sm:hidden w-full  border-2 sm:border-0  " id="table2">
@@ -78,30 +114,52 @@
                          <th></th>
                          <th></th>
                          <th></th>
+                         <th></th>
  
  
                      </tr>
                  </thead>
                  <tbody class="block  w-full">
-                 
+                    @foreach($allUsers as $user)
                      <tr class="block pt-10 sm:pt-0   w-full ">
  
                          <td data-label="id"
                              class="border-b before:content-['id']  before:absolute before:left-20 before:w-1/2 before:font-bold before:text-left before:pl-2 sm:before:hidden sm:text-center block    text-right">
-                           3
+                           {{$user->id}}
                          </td>
-                         <td data-label="nameCategorie" class="border-b before:content-['nameCategorie'] before:absolute before:left-20 before:w-1/2 before:font-bold before:text-left before:pl-2 block  sm:before:hidden sm:text-center 
+                         <td data-label="fullName" class="border-b before:content-['fullName'] before:absolute before:left-20 before:w-1/2 before:font-bold before:text-left before:pl-2 block  sm:before:hidden sm:text-center 
                               text-right">
-                            hjkl
+                            {{$user->fullName}}
                          </td>
+
+                         @if($user->role ==='admin')
+                         <td data-label="Role" class="border-b before:content-['Role'] before:absolute before:left-20 before:w-1/2 before:font-bold before:text-left before:pl-2 block  sm:before:hidden sm:text-center 
+                         text-right">
+                         <p class="rounded-md bg-red-300 text-red-800"> admin</p>
+                         </td>
+
+                         @elseif($user->role ==='client')
+
+                         <td data-label="Role" class="border-b before:content-['Role'] before:absolute before:left-20 before:w-1/2 before:font-bold before:text-left before:pl-2 block  sm:before:hidden sm:text-center 
+                         text-right">
+                         <p class="rounded-md bg-green-300 text-green-800"> client</p>
+                         </td>
+                         @elseif($user->role ==='organisateur')
+
+                         <td data-label="Role" class="border-b before:content-['Role'] before:absolute before:left-20 before:w-1/2 before:font-bold before:text-left before:pl-2 block  sm:before:hidden sm:text-center 
+                         text-right">
+                         <p class="rounded-md bg-blue-300 text-blue-800"> organisateur</p>
+                         </td>
+                         @endif
+
                          
                         
  
                          <td data-label="ACtion"
                              class="border-b before:content-['action'] before:absolute before:left-20 before:w-1/2 before:font-bold before:text-left before:pl-2  sm:before:hidden  sm:text-center block    text-right">
                              <button class="bg-blue-800 text-white w-8 h-[35px] rounded-md">
-                                 <a href="/update-category">
-                                     <i class="fa-solid fa-pen " style="color:#fbfbfb"></i>
+                                 <a href="">
+                                    <i class="fa-solid fa-user-slash" style="color: #ffffff;"></i>
                                  </a>
  
                              </button>
@@ -111,12 +169,19 @@
                                      <i class="fa-solid fa-trash " style="color:#ffffff"></i></a>
  
                              </button>
+
+                             <button class="bg-blue-800 text-white w-8 h-[35px] rounded-md">
+                                <a
+                                    href="">
+                                    <i class="fa-solid fa-user" style="color: #ffffff;"></i></a>
+
+                            </button>
  
  
                          </td>
  
                      </tr>
-                  
+                  @endforeach
  
                  </tbody>
              </table>

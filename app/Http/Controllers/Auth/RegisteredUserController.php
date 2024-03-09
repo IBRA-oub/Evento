@@ -57,6 +57,7 @@ class RegisteredUserController extends Controller
                 'password' => Hash::make($request->password),
                 'picture_user' => $imageName,
                 'role'=> $request->role,
+                'banned'=> '0',
             ]); 
         }
 
