@@ -56,7 +56,8 @@ Route::group([], function() {
 
     Route::get('/organisateur-dashboard', [OrganisateurController::class, 'dashboard'])->name('organisateur-dashboard');
     Route::get('/confirmation-tickets', [OrganisateurController::class, 'confirmationTickets'])->name('confirmation-tickets');
-    Route::get('/creat-event', [EventController::class, 'createEvent'])->name('creat-event');
+    Route::get('/creat-event', [CategoryController::class, 'redCategoriesOrga'])->name('creat-event');
+    Route::post('/event-store', [EventController::class, 'storeEvent'])->name('event.store');
     Route::get('/mes-events', [EventController::class, 'meEvents'])->name('me-events');
     Route::get('/edit-event', [EventController::class, 'editEvent'])->name('edit-event');
 

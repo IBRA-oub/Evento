@@ -12,10 +12,13 @@ class Event extends Model
     protected $fillable = [
         'title',
         'description',
-        'date',
-        'place_avalaible',
         'location',
-        'type_validation'
+        'image',
+        'date',
+        'places_available',
+        'type_validation',
+        'category_id',
+        'user_id'
     ];
 
     public function user(){

@@ -7,7 +7,7 @@
     <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 gap-6 px-4 py-8">
 
         <div
-            class="flex flex-col justify-center items-center gap-2 border border-dashed border-gray-500 p-4 rounded-md h-32">
+            class="flex flex-col justify-center items-center gap-2 border border-dashed border-gray-500 p-4 rounded-md h-32 ml-9">
             <div class="flex gap-2 items-center">
                 <span class="font-bold text-4xl">20</span>
                 <svg class="w-8 h-8 opacity-70" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -36,7 +36,7 @@
         </div>
     
         <div
-            class="flex flex-col justify-center items-center gap-2 border border-dashed border-gray-500 p-4 rounded-md h-32">
+            class="flex flex-col justify-center items-center gap-2 border border-dashed border-gray-500 p-4 rounded-md h-32 ml-9">
             <div class="flex gap-2 items-center">
                 <span class="font-bold text-4xl">34K</span>
                 <svg class="w-8 h-8 opacity-70" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

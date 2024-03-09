@@ -18,8 +18,10 @@ return new class extends Migration
             $table->dateTime('date');
             $table->integer('places_available');
             $table->string('location');
-            $table->enum('type_validation', ['pending','accepted','refused']);
-            $table->enum('status',['0','1','2']);
+            $table->enum('type_validation', ['auto','manu']);
+            $table->enum('status',['pending','accepted','refused']);
+            $table->string('image');
+            
 
             $table->foreignId('user_id')
             ->constrained('users')

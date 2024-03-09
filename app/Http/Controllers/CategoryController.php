@@ -14,6 +14,14 @@ class CategoryController extends Controller
         return view('admin-pages.categories',['categories' => $categories]);
        
     }
+
+    // _____________affichage de categories pour l'organisateur pour choiser__________
+    public function redCategoriesOrga(){
+        $categories = Category::all();
+
+        return view('organisateur-pages.creat-event',['categories' => $categories]);
+       
+    }
     // _______________creation de category_______________
     public function creatCategories(Request $request){
 
