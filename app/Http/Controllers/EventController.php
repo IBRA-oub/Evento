@@ -16,9 +16,11 @@ class EventController extends Controller
     public function closlyEvent(){
         $closlyEvent = Event::where('date', '>=', Carbon::now()) 
         ->orderBy('date', 'asc') 
-        ->first(); 
+        ->first();
         
-        return view('welcome',compact('closlyEvent'));
+        $lastFourEvent = Event::latest()->limit(4)->get();
+        
+        return view('welcome',compact('closlyEvent','lastFourEvent'));
     }
     
 

@@ -294,54 +294,25 @@
               </div>
             </div>
             <div class="row">
+              @foreach($lastFourEvent as $event)
               <div class="col-lg-3 col-md-6 col-xs-12">
                 <div class="event-item">
-                  <img class="img-fluid" src="img/event/img1.jpg" alt="">
+                  <img class="img-fluid" src="{{asset('storage/image/'.$event->image)}}" alt="">
                   <div class="overlay-text">
                     <div class="content">
-                      <h3>Business Confrence</h3>
-                      <a href="#">View details</a>
+                      <h3>{{$event->title}}</h3>
+                      <a href="{{route('event.detaille',['id'=>$event->id])}}">View details</a>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-lg-3 col-md-6 col-xs-12">
-                <div class="event-item">
-                  <img class="img-fluid" src="img/event/img2.jpg" alt="">
-                  <div class="overlay-text">
-                    <div class="content">
-                      <h3>Designer Confrence</h3>
-                      <a href="#">View details</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-6 col-xs-12">
-                <div class="event-item">
-                  <img class="img-fluid" src="img/event/img3.jpg" alt="">
-                  <div class="overlay-text">
-                    <div class="content">
-                      <h3>Marketer Confrence</h3>
-                      <a href="#">View details</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-6 col-xs-12">
-                <div class="event-item">
-                  <img class="img-fluid" src="img/event/img4.jpg" alt="">
-                  <div class="overlay-text">
-                    <div class="content">
-                      <h3>JS Confrence</h3>
-                      <a href="#">View details</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+             @endforeach
+             
+              
             </div>
             <div class="row mt-5">
               <div class="col-12 text-center">
-                <a href="#" class="btn btn-common">More Event</a>
+                <a href="/all-event" class="btn btn-common">More Event</a>
               </div>
             </div>
           </div>
@@ -455,12 +426,10 @@
             <div class="row mb-30 text-center wow fadeInDown" data-wow-delay="0.3s">
               <div class="col-lg-12">
                 <div class="sponsors-logo text-center">
-                   <a href=""><img src="img/sponsors/logo-1.png" alt=""></a>
-                   <a href=""><img src="img/sponsors/logo-2.png" alt=""></a>
-                   <a href=""><img src="img/sponsors/logo-3.png" alt=""></a>
-                   <a href=""><img src="img/sponsors/logo-4.png" alt=""></a>
+                   
+           
                    <a href=""><img src="img/sponsors/logo-5.png" alt=""></a>
-                   <a href=""><img src="img/sponsors/logo-6.png" alt=""></a>
+                   <a href=""><img src="img/sponsors/logo-1.png" alt=""></a>
                    <a href=""><img src="img/sponsors/logo-7.png" alt=""></a>
                    <a href=""><img src="img/sponsors/logo-8.png" alt=""></a>
                    <a href=""><img src="img/sponsors/logo-9.png" alt=""></a>

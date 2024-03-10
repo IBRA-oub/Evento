@@ -17,7 +17,7 @@ class ReservationController extends Controller
         $creatReservation = new Reservation;
         $creatReservation->your_place = $event->places_available;
         $creatReservation->event_id = $eventId;
-        $creatReservation->user_id = $request->input('user_id');
+        $creatReservation->user_id = auth()->user()->id;
         $creatReservation->status = 'accepted';
             
         $event->places_available--;
@@ -31,7 +31,7 @@ class ReservationController extends Controller
             $creatReservation = new Reservation;  
             $creatReservation->your_place = $event->places_available;
             $creatReservation->event_id = $eventId;
-            $creatReservation->user_id = $request->input('user_id');
+            $creatReservation->user_id = auth()->user()->id;
             $creatReservation->status = 'pending';
 
             $event->places_available--;
