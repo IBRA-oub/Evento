@@ -45,6 +45,8 @@ Route::group([], function() {
     Route::get('/all-event', [EventController::class, 'allEvantAffichage'])->name('all-event');
     Route::get('/event-detaille/{id}', [EventController::class, 'evantDetailleAffichage'])->name('event.detaille');
     Route::get('/banned', [ClientController::class, 'banned'])->name('banned');
+    Route::get('/filter-by-category', [EventController::class, 'filterByCategory'])->name('category.filter');
+    Route::get('/search', [EventController::class, 'searchByTitle'])->name('category.search');
 });
 
 

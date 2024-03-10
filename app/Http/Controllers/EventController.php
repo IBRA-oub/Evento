@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Category;
 use carbon\Carbon;
+use Illuminate\Pagination\Paginator;
 
 
 class EventController extends Controller
@@ -166,11 +167,10 @@ class EventController extends Controller
 
     // ______________________red all accepted event home page __________________
     
-    public function allEvantAffichage(){
-        
+    public function allEvantAffichage() {
         $categories = Category::all();
-        $allAccepetedEvent = Event::all()->where('status','accepted');
-        return view('all-event',['allAccepetedEvent'=>$allAccepetedEvent,'categories'=>$categories]);
+        $allAcceptedEvent = Event::where('status', 'accepted')->paginate(2);
+        return view('all-event', ['allAccepetedEvent' => $allAcceptedEvent, 'categories' => $categories]);
     }
 
     // _____________________event detailles________________
@@ -179,5 +179,36 @@ class EventController extends Controller
 
         $eventDetaille = Event::findOrFail($id);
         return view('event-detaille',['eventDetaille'=>$eventDetaille]);
+    }
+
+     // ________________________filter by category________________
+    public function filterByCategory(Request $request){
+        $categoryId = $request->input('category_id');
+    
+        $allAccepetedEvent = Event::where('category_id', $categoryId)
+        ->where('status', 'accepted')
+       ->paginate(2);
+       
+        $categories = Category::all();
+        
+        return view('all-event',['allAccepetedEvent'=>$allAccepetedEvent,'categories'=>$categories]);
+
+        
+    }
+
+    //__________________________search by category________________
+
+    public function searchByTitle(Request $request){
+        
+        $search = $request->input('search');
+    
+        $allAccepetedEvent = Event::where('title', 'LIKE' ,'%'. $search .'%')->paginate(2);
+
+       
+        $categories = Category::all();
+        
+        return view('all-event',['allAccepetedEvent'=>$allAccepetedEvent,'categories'=>$categories]);
+
+        
     }
 }

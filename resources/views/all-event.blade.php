@@ -106,19 +106,21 @@
 
         <div class="container mx-auto mt-4 flex justify-between items-center ">
             <!-- Barre de recherche -->
+            <form class="flex justify-between w-full " action="{{route('category.search')}}" method="GET">
+                @csrf
             <div class="flex items-center">
-                <input type="text" placeholder="Rechercher..." class="border border-gray-400 px-4 py-2 rounded-md mr-4">
+                <input name="search" type="text" placeholder="Rechercher..." class="border border-gray-400 px-4 py-2 rounded-md mr-4">
                 <button class="bg-[#00af83] text-white px-4 py-2 rounded-md hover:bg-[#3cb295]">Rechercher</button>
             </div>
+            </form>
         
             <!-- Dropdown -->
             <div class="">
                
                  
-            <form class="flex justify-between w-full ">
-               
-              
-                <select id="countries" class="rounded-md" >
+            <form class="flex justify-between w-full " action="{{route('category.filter')}}" method="GET">
+                @csrf
+                <select name="category_id" id="countries" class="rounded-md" >
                     <option value=""> choiser category</option>
                     @foreach($categories as $category)
                 <option value="{{$category->id}}">{{$category->name}}</option>
@@ -209,8 +211,9 @@
                         </div>
                     </div>
                     @endforeach
-       
+                    
                 </div>
+                <div class="flex justify-center">{{$allAccepetedEvent->links()}}</div>
                 
             </div>
             

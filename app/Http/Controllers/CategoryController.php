@@ -61,6 +61,7 @@ class CategoryController extends Controller
         return redirect()->route('categories')->with('success','update category successfuly');
     }
 
+   
     // ________________________delete category_________________
 
     public function destroyCategory($id)
