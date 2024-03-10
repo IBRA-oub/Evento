@@ -66,7 +66,18 @@
                     @if (Route::has('login'))
                         <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
                             @auth
-                                <a href="{{ url('/dashboard') }}" class="nav-link">Dashboard</a>
+                            @if(auth()->user()->role == 'client')
+
+                            <a href="{{ url('/client-reservation') }}" class="nav-link">Dashboard</a>
+                      
+                            @elseif(auth()->user()->role == 'organisateur')
+
+                            <a href="{{ url('/organisateur-dashboard') }}" class="nav-link">Dashboard</a>
+                       
+                            @elseif(auth()->user()->role == 'organisateur')
+
+                              <a href="{{ url('/admin-dashboard') }}" class="nav-link">Dashboard</a>
+                              @endif
                             @else
                                 <a href="{{ route('login') }}" class="nav-link " style="padding: 0px 15px 0px 15px; border: solid 1px white; border-radius:5px;">Log in</a>
                     </li>

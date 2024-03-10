@@ -154,9 +154,15 @@
            
             @if(auth()->check()) 
             @if(auth()->user()->role == 'client')
+                @if($eventDetaille->places_available == 0)
+                <div class="absolute right-10">
+                    <p  style="background-color: #225aad" class="ml-2 rounded-lg w-full py-2 px-20 mt-5 text-white font-bold">Guichet fermer</p>
+                </div>
+                @else
                 <div class="absolute right-10">
                     <button type="submit" style="background-color: #225aad" class="ml-2 rounded-lg w-full py-2 px-20 mt-5 text-white font-bold">Buy ticket</button>
                 </div>
+                @endif
                 @elseif(auth()->user()->role == 'admin')
 
                 @elseif(auth()->user()->role == 'organisateur')
@@ -185,6 +191,12 @@
             function updateCountdown() {
             const now = new Date().getTime();
             const distance = endDate - now;
+
+            if (distance <= 0) {
+                clearInterval(intervalId); /
+            
+                return;
+            }
 
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));

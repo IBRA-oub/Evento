@@ -4,11 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Event;
+use App\Models\Category;
 
 class AdminController extends Controller
 {
     public function dashboard(){
-        return view('admin-pages.dashboard');
+
+        $statistiqueEventAccepted = Event::all()->where('status','refused')->count();
+        $statistiqueEventPending = Event::all()->where('status','pending')->count();
+        $statistiqueCategories = Category::all()->count();
+        $statistiqueUsers = User::all()->count();
+        return view('admin-pages.dashboard' ,compact('statistiqueCategories','statistiqueEventAccepted','statistiqueEventPending','statistiqueUsers'));
     }
 
     public function addCategories(){
@@ -56,4 +63,5 @@ class AdminController extends Controller
         return redirect()->route('users')->with('success', 'user delete successfully');
     }
    
+    
 }
