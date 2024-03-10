@@ -15,9 +15,11 @@
 
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link rel="stylesheet" href="../style/client.css">
+    @vite('public/style/client.css')
+    
 </head>
 
+@if(auth()->user()->banned ==='0')
 <body >
 {{-- __________nav bar____________ --}}
 
@@ -114,5 +116,11 @@
         }, 3000); // 3000 millisecondes = 3 secondes
     </script>
 </body>
-
+@else
+<body class="bg-black flex justify-center items-center h-screen">
+    <div class="loader">
+        <div data-glitch="YOUR ARE BANNED" class="glitch">YOUR ARE BANNED</div>
+     </div>
+</body>
+    @endif
 </html>

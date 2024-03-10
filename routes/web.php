@@ -42,6 +42,7 @@ Route::group([], function() {
     
     Route::get('/all-event', [EventController::class, 'allEvantAffichage'])->name('all-event');
     Route::get('/event-detaille/{id}', [EventController::class, 'evantDetailleAffichage'])->name('event.detaille');
+    Route::get('/banned', [ClientController::class, 'banned'])->name('banned');
 });
 
 
@@ -49,6 +50,7 @@ Route::group([], function() {
 
 Route::middleware(['auth', CheckRole::class . ':client'])->group(function () {
 
+    
     Route::get('/client-tickets', [ReservationController::class, 'clientTichketsAffichage'])->name('client-tickets');
     Route::get('/client-reservation', [ReservationController::class, 'clientReservation'])->name('client-reservation');
     Route::post('/reservation', [ReservationController::class, 'createReservation'])->name('reservation.create');

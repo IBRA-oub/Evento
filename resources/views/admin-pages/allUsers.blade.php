@@ -58,23 +58,36 @@
                           </td>
                           @elseif($user->role ==='organisateur')
                           <td class=" text-center ">
-                            <p class="rounded-md bg-blue-300 text-blue-800"> client</p>
+                            <p class="rounded-md bg-blue-300 text-blue-800"> organisateur</p>
                           </td>
                           @endif
  
-         
+                        @if($user->role ==='admin')
+
+                        @else
                          <td class="  text-center flex justify-center ">
-                             
+                            @if($user->banned ==='0')
                                 <form action="{{route('banned.user',['id'=>$user->id])}}" method="POST">
                                     @csrf
                                     @method('PUT')
                                 <button class="bg-blue-800 text-white w-8 h-[35px] rounded-md mr-2">
                                  <a >
                                      <i class="fa-solid fa-user-slash" style="color: #ffffff;"></i></a>
- 
+                            
  
                              </button>
                             </form>
+                            @elseif($user->banned ==='0')
+                            <form >
+                                
+                            <button class="bg-green-800 text-white w-8 h-[35px] rounded-md mr-2">
+                             <a >
+                                 <i class="fa-solid fa-user-slash" style="color: #ffffff;"></i></a>
+                        
+
+                         </button>
+                        </form>
+                        @endif
                             <form action="{{route('destroy.user',['id'=>$user->id])}}" method="POST">
                                 @csrf
                                 @method('DELETE')
@@ -85,6 +98,19 @@
  
                              </button>
                             </form>
+                            @if($user->banned ==='0')
+                            <form action="{{route('debanned.user',['id'=>$user->id])}}" method="POST">
+                                @csrf
+                                @method('PUT ')
+                             
+                             <button class="bg-green-800 text-white w-8 h-[35px] rounded-md">
+                                <a
+                                    href="">
+                                    <i class="fa-solid fa-user" style="color: #ffffff;"></i></a>
+
+                            </button>
+                            </form>
+                            @elseif($user->banned ==='1')
                             <form action="{{route('debanned.user',['id'=>$user->id])}}" method="POST">
                                 @csrf
                                 @method('PUT ')
@@ -96,8 +122,9 @@
 
                             </button>
                             </form>
+                            @endif
                          </td>
- 
+                         @endif
                      </tr>
                
  
@@ -154,8 +181,10 @@
 
                          
                         
- 
-                         <td data-label="Action  "
+                         @if($user->role ==='admin')
+                         
+                         @else
+                         <td data-label="Action"
                              class=" border-b before:content-['action'] before:absolute before:left-20 before:w-1/2 before:font-bold before:text-left before:pl-2  sm:before:hidden  sm:text-center block    text-right">
                              <form action="{{route('banned.user',['id'=>$user->id])}}" method="POST">
                                 @csrf
@@ -189,10 +218,8 @@
 
                             </button>
                              </form>
- 
- 
                          </td>
- 
+                         @endif
                      </tr>
                   @endforeach
  

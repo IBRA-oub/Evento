@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -12,11 +13,13 @@
 
            
             @vite('resources/css/app.css')
+            @vite('public/style/client.css')
 
-<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 </head>
+@if(auth()->user()->banned ==='0')
 <body>
-
+    
       <!-- Header Area wrapper Starts -->
 
       <header class="bg-gray-400 py-1">
@@ -50,7 +53,7 @@
             <span class="block sm:inline">{{ session('success') }}</span>
         </div>
         @endif
-        
+
         @if($clientReservation->isNotEmpty()) 
         @foreach($clientReservation as $reservation)
      
@@ -164,9 +167,15 @@
          EMPTY  !! THER IS NO RESERVATION  
     </div>
     @endif
-    
-    
-     
+
    
 </body>
+@else
+<body class="bg-black flex justify-center items-center h-screen">
+    <div class="loader">
+        <div data-glitch="YOUR ARE BANNED" class="glitch">YOUR ARE BANNED</div>
+     </div>
+</body>
+    @endif
+
 </html>

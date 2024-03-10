@@ -30,11 +30,30 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
         
         if(auth()->user()->role ==='organisateur'){
+            if(auth()->user()->banned ==='1'){
+                
+                return redirect()->intended(RouteServiceProvider::BANNED);
+                
+            }
+            else{
             return redirect()->intended(RouteServiceProvider::ORGANISATEUR);
+            }
         } else if(auth()->user()->role === 'client'){
+            if(auth()->user()->banned ==='1'){
+                
+                return redirect()->intended(RouteServiceProvider::BANNED);
+                
+            }else{
             return redirect()->intended(RouteServiceProvider::CLIENT);
+            }
         }else{
+            if(auth()->user()->banned ==='1'){
+                
+                return redirect()->intended(RouteServiceProvider::BANNED);
+                
+            }else{
             return redirect()->intended(RouteServiceProvider::ADMIN);
+            }
         }
         
     }
