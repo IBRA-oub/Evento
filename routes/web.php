@@ -21,8 +21,10 @@ use App\Http\Middleware\CheckRole;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group([], function() {
+    Route::get('/', [EventController::class, 'closlyEvent'])->name('welcome');
+
+    
 });
 
 Route::get('/dashboard', function () {

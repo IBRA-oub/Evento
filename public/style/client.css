@@ -347,3 +347,45 @@ html {
 .button:active {
   border: 1px solid #175f79;
 }
+
+/* ________________count welcome page___________ */
+
+
+    #countdown {
+    
+      position: absolute;
+      left: 18%;
+      top: 70%;
+      border-radius: 10px; /* Correspond à rounded-md */
+      background-image: linear-gradient(65deg, #4d56ff 0, #8f80ff 100%);
+      text-align: center;
+      margin-top: 1rem; /* Correspond à mt-4 */
+      padding: 20px 50px; /* Correspond à py-5 px-20 */
+      display: flex;
+      justify-content: center;
+      
+    }
+    #count{
+        display: flex;
+        background-color: transparent;
+    }
+
+    .countdown-item {
+      border-radius: 10px; /* Correspond à rounded-lg */
+      padding: 10px 20px; /* Correspond à p-2 */
+      margin: 0 10px; /* Correspond à mx-2 */
+      color: #ffffff; /* Correspond à text-white */
+    }
+
+    #days,
+    #hours,
+    #minutes,
+    #seconds {
+      font-weight: bold; /* Correspond à font-semibold */
+      font-size: 6rem; /* Correspond à text-6xl */
+    }
+
+    p {
+      margin: 0; /* Réinitialise la marge par défaut pour les paragraphes */
+    }
+ 

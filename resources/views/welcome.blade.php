@@ -22,6 +22,8 @@
             <link rel="stylesheet" type="text/css" href="css/main.css">
             <!-- Responsive Style -->
             <link rel="stylesheet" type="text/css" href="css/responsive.css">
+        
+          @vite('public/style/client.css')
     </head>
     <body>
 
@@ -103,12 +105,25 @@
                 <div class="col-lg-9 col-sm-12">
                   <div class="contents text-center">
                     
-                    <p class="banner-info">15, Oct 2020 - Maria Hall, NY, United states</p>
-                    <h2 class="head-title">Developers Conference</h2>
+                    <p class="banner-info">{{$closlyEvent->date}} </p>
+                    <h2 class="head-title">{{$closlyEvent->title}}</h2>
                     <p class="banner-desc">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente, nobis nesciunt atque perferendis, ipsa doloremque deserunt cum qui.</p>
-                    <div class="banner-btn">
-                      <a href="#" class="btn btn-common">Get Ticket</a>
+                      {{$closlyEvent->description}} 
+                      <div class="banner-btn">
+                        @if(auth()->check()) 
+                            @if(auth()->user()->role == 'client')
+                                
+                            <a href="#" class="btn btn-common">Get Ticket</a>
+                                
+                                @elseif(auth()->user()->role == 'admin')
+
+                                @elseif(auth()->user()->role == 'organisateur')
+                            @endif
+                        @else
+                        <a href="{{ route('login') }}" class="btn btn-common">Get Ticket</a>
+                            
+                            
+                        @endif
                     </div>
                   </div>
                 </div>
@@ -120,21 +135,39 @@
         </header>
         <!-- Header Area wrapper End -->
     
-        <!-- Count Bar Start -->
-        <section id="count">
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-10">
-                <div class="count-wrapper text-center">
-                  <div class="time-countdown wow fadeInUp" data-wow-delay="0.2s">
-                    <div id="clock" class="time-count"></div>
-                  </div>
+         <!-- Count Bar Start -->
+         <div id="countdown">
+            <div id="count">
+                <div class="countdown-item">
+                  <span id="days">00</span>
+                  <p>jours</p>
                 </div>
-              </div>
+                <div class="countdown-item">
+                  <span>:</span>
+                </div>
+                <div class="countdown-item">
+                  <span id="hours">00</span>
+                  <p>heures</p>
+                </div>
+                <div class="countdown-item">
+                  <span>:</span>
+                </div>
+                <div class="countdown-item">
+                  <span id="minutes">00</span>
+                  <p>minutes</p>
+                </div>
+                <div class="countdown-item">
+                  <span>:</span>
+                </div>
+                <div class="countdown-item">
+                  <span id="seconds">00</span>
+                  <p>seconds</p>
+                </div>
             </div>
-          </div>
-        </section>
-        <!-- Count Bar End -->
+        </div>
+        
+        
+      <!-- Count Bar End -->
     
         <!-- About Section Start -->
         <section id="about" class="section-padding">
@@ -246,62 +279,7 @@
         </section>
         <!-- intro Section End -->
       
-        <!-- Counter Area Start-->
-        <section class="counter-section section-padding">
-          <div class="container">
-            <div class="row">
-              <!-- Counter Item -->
-              <div class="col-lg-3 col-md-6 col-xs-12 work-counter-widget">
-                <div class="counter">
-                  <div class="icon">
-                    <i class="lni-mic"></i>
-                  </div>
-                  <div class="counter-content">
-                    <div class="counterUp">42</div>
-                    <p>Spekers</p>
-                  </div>
-                </div>
-              </div>
-              <!-- Counter Item -->
-              <div class="col-lg-3 col-md-6 col-xs-12 work-counter-widget">
-                <div class="counter">
-                  <div class="icon">
-                    <i class="lni-bulb"></i>
-                  </div>
-                  <div class="counter-content">
-                    <div class="counterUp">800</div>
-                    <p>Seats</p>
-                  </div>
-                </div>
-              </div>
-              <!-- Counter Item -->
-              <div class="col-lg-3 col-md-6 col-xs-12 work-counter-widget">
-                <div class="counter">
-                  <div class="icon">
-                    <i class="lni-briefcase"></i>
-                  </div>
-                  <div class="counter-content">
-                    <div class="counterUp">24</div>
-                    <p>Sponsors</p>
-                  </div>
-                </div>
-              </div>
-              <!-- Counter Item -->
-              <div class="col-lg-3 col-md-6 col-xs-12 work-counter-widget">
-                <div class="counter">
-                  <div class="icon">
-                    <i class="lni-coffee-cup"></i>
-                  </div>
-                  <div class="counter-content">
-                    <div class="counterUp">56</div>
-                    <p>Sessions</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <!-- Counter Area End-->
+       
 
     
         <!-- Event Slides Section Start -->
@@ -605,6 +583,42 @@
         <script src="js/wow.js"></script>
         <script src="js/nivo-lightbox.js"></script>
         <script src="js/video.js"></script>
-        <script src="js/main.js"></script>      
+        <script src="js/main.js"></script>  
+        <script>
+         
+          let timeString = '{{$closlyEvent->date}}'; 
+          const endDate = new Date(timeString).getTime(); 
+
+          function updateCountdown() {
+          const now = new Date().getTime();
+          const distance = endDate - now;
+
+          if (distance <= 0) {
+              clearInterval(intervalId); 
+          
+              return;
+          }
+
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          document.getElementById('days').innerText = formatTime(days);
+          document.getElementById('hours').innerText = formatTime(hours);
+          document.getElementById('minutes').innerText = formatTime(minutes);
+          document.getElementById('seconds').innerText = formatTime(seconds);
+          }
+
+          function formatTime(time) {
+          return time < 10 ? `0${time}` : time;
+          }
+
+         
+          setInterval(updateCountdown, 1000);
+
+         
+          updateCountdown();
+        </script>    
       </body>
 </html>

@@ -5,11 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Category;
+use carbon\Carbon;
 
 
 class EventController extends Controller
 {
    
+    // ________________________red clocly event___________________
+    
+    public function closlyEvent(){
+        $closlyEvent = Event::where('date', '>=', Carbon::now()) 
+        ->orderBy('date', 'asc') 
+        ->first(); 
+        
+        return view('welcome',compact('closlyEvent'));
+    }
     
 
     
