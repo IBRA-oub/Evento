@@ -48,7 +48,12 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             'picture_user' => $imageName,
             'role'=> $request->role,
+           
         ]);
+        Auth::login($user);
+        event(new Registered($user));
+        return redirect(RouteServiceProvider::CLIENT);
+        
     }
         elseif($request->role === 'organisateur'){
             $user = User::create([
@@ -59,12 +64,12 @@ class RegisteredUserController extends Controller
                 'role'=> $request->role,
                 'banned'=> '0',
             ]); 
+            Auth::login($user);
+            event(new Registered($user));
+            return redirect(RouteServiceProvider::ORGANISATEUR);
         }
 
-        event(new Registered($user));
 
-        Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME);
+        // return redirect(RouteServiceProvider::HOME);
     }
 }

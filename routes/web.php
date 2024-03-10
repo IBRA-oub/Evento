@@ -8,6 +8,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\OrganisateurController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Middleware\CheckRole;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,15 +47,16 @@ Route::group([], function() {
 
 // ____________________client ticket_________________________
 
-Route::group([], function() {
+Route::middleware(['auth', CheckRole::class . ':client'])->group(function () {
 
     Route::get('/client-tickets', [ClientController::class, 'clientTichketsAffichage'])->name('client-tickets');
+    Route::get('/client-reservation', [ClientController::class, 'clientReservation'])->name('client-reservation');
     Route::post('/reservation', [ReservationController::class, 'createReservation'])->name('reservation.create');
 
 });
 
 // ______________________organisateur pages________________________
-Route::group([], function() {
+Route::middleware(['auth', CheckRole::class . ':organisateur'])->group(function () {
 
     Route::get('/organisateur-dashboard', [OrganisateurController::class, 'dashboard'])->name('organisateur-dashboard');
     Route::get('/confirmation-tickets', [OrganisateurController::class, 'confirmationTickets'])->name('confirmation-tickets');
@@ -67,7 +69,7 @@ Route::group([], function() {
 });
 
 // ________________________admin pages__________________________
-Route::group([], function() {
+Route::middleware(['auth', CheckRole::class . ':admin'])->group(function () {
     Route::get('/admin-dashboard', [AdminController::class, 'dashboard'])->name('admin-dashboard');
     Route::get('/add-category', [AdminController::class, 'addCategories'])->name('add-category');
     Route::get('/users', [AdminController::class, 'allUsers'])->name('users');

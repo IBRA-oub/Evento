@@ -42,7 +42,7 @@ body {
 	grid-template-columns: 200px auto;
 	height: 300px;
 	margin: auto;
-	width: 1300px;
+	width: 1200px;
     margin-top: 10px;
     
 }
@@ -282,6 +282,9 @@ body {
             <nav class="container mx-auto flex justify-between items-center">
                 <a href="/" class="w-[10%]"><img src="img/logo.png" alt=""></a>
                 <ul class="flex items-center">
+                    <li class="mr-6"><a href="/client-tickets" class="font-bold text-blue-500">Tickets</a></li>
+                    <li class="mr-6"><a href="/client-reservation" class="font-bold text-white hover:text-blue-500">Reservation</a></li>
+                   
                     <li>   
                         <a href="{{ route('login') }}" class="nav-link inline-block px-4 py-2 border border-white rounded hover:bg-white hover:text-blue-600">
                             Log out
