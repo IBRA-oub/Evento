@@ -65,7 +65,7 @@
                                     <path d="M5 18v2"></path>
                                     <path d="M19 18v2"></path>
                                   </svg>
-                                <p class="">{{$event->places_available}}</p>
+                                <p class="">{{$event->places_available}} place available</p>
                             </div>
 
                          </div>

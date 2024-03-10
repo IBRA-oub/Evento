@@ -11,6 +11,7 @@
             <form action="{{route('event.update',['id'=>$event->id])}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
+                <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
             {{-- ______________title__________ --}}
             <div class="-mx-3 ">
               <div class="w-full px-3 ">

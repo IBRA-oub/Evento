@@ -39,23 +39,36 @@
                     <li class="mr-6"><a href="/" class="font-bold text-white hover:text-blue-500">Sponsors</a></li>
                     <li>
 
-                    @if (Route::has('login'))
-                        @auth
-                            <a href="{{ url('/dashboard') }}" class="nav-link">Dashboard</a>
-                        @else
-                        <a href="{{ route('login') }}" class="nav-link inline-block px-4 py-2 border border-white rounded hover:bg-white hover:text-blue-600">
-                            Log in
-                        </a>                
-                    </li>
-                     <li>
-                            @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="inline-block px-4 py-2 ml-4 border border-blue-600 rounded bg-blue-600 text-white hover:bg-blue-700 hover:border-blue-700">
-                                Register
-                            </a>
-                         @endif
-                        @endauth
-                     </li>
-                      @endif
+                        <li>
+
+                            @if (Route::has('login'))
+                                @auth
+                                @if(auth()->user()->role == 'client')
+        
+                                    <a href="{{ url('/client-reservation') }}" class="nav-link">Dashboard</a>
+                              
+                                    @elseif(auth()->user()->role == 'organisateur')
+        
+                                    <a href="{{ url('/organisateur-dashboard') }}" class="nav-link">Dashboard</a>
+                               
+                                    @elseif(auth()->user()->role == 'organisateur')
+        
+                                      <a href="{{ url('/admin-dashboard') }}" class="nav-link">Dashboard</a>
+                                      @endif
+                                @else
+                                <a href="{{ route('login') }}" class="nav-link inline-block px-4 py-2 border border-white rounded hover:bg-white hover:text-blue-600">
+                                    Log in
+                                </a>                
+                            </li>
+                             <li>
+                                    @if (Route::has('register'))
+                                    <a href="{{ route('register') }}" class="inline-block px-4 py-2 ml-4 border border-blue-600 rounded bg-blue-600 text-white hover:bg-blue-700 hover:border-blue-700">
+                                        Register
+                                    </a>
+                                 @endif
+                                @endauth
+                             </li>
+                              @endif
                 </ul>
                 
                 {{-- mobile menu --}}

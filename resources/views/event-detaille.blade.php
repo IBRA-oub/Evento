@@ -72,6 +72,7 @@
                 @csrf
                 <input type="hidden" name="type_validation" value="{{$eventDetaille->type_validation}}">
                 <input type="hidden" name="event_id" value="{{$eventDetaille->id}}">
+                <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
 
             <div class="block md:flex md:space-x-2 px-2 lg:p-0">
                 <div class="mb-4 md:mb-0 w-full md:w-3/3 relative rounded inline-block" style="height: 24em;">

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
             $table->enum('status',['pending','accepted','refused']);
+            $table->integer('your_place');
             $table->foreignId('user_id')
             ->constrained('users')
             ->onDelete('cascade')

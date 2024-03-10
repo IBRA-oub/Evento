@@ -49,8 +49,8 @@ Route::group([], function() {
 
 Route::middleware(['auth', CheckRole::class . ':client'])->group(function () {
 
-    Route::get('/client-tickets', [ClientController::class, 'clientTichketsAffichage'])->name('client-tickets');
-    Route::get('/client-reservation', [ClientController::class, 'clientReservation'])->name('client-reservation');
+    Route::get('/client-tickets', [ReservationController::class, 'clientTichketsAffichage'])->name('client-tickets');
+    Route::get('/client-reservation', [ReservationController::class, 'clientReservation'])->name('client-reservation');
     Route::post('/reservation', [ReservationController::class, 'createReservation'])->name('reservation.create');
 
 });
