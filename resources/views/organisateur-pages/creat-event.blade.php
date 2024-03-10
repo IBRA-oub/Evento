@@ -10,6 +10,7 @@
         <div class="mx-auto w-full max-w-[550px]">
           <form action="{{route('event.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
+            <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
             {{-- ______________titre__________ --}}
             <div class="-mx-3 ">
               <div class="w-full px-3 ">

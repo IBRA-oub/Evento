@@ -38,7 +38,7 @@ class EventController extends Controller
         $event->places_available = $request->input('places_available');
         $event->type_validation = $request->input('type_validation');
         $event->category_id = $request->input('category_id');
-        $event->user_id = 2;
+        $event->user_id = $request->input('user_id');
         $event->status = 'pending';
         
         if ($request->hasFile('image')) {
@@ -56,7 +56,7 @@ class EventController extends Controller
     // _______________________mes events organisateur___________________
 
     public function meEvents(){
-        $events = Event::all();
+        $events = Event::all()->where('user_id',auth()->user()->id);
 
         return view('organisateur-pages.me-events',['events' => $events]);
         

@@ -31,6 +31,7 @@
                             <img src="{{asset('storage/image/'.$event->image)}}"
                                 class="h-32 rounded-lg w-full object-cover">
                             <div class="flex justify-center">
+                                
                                 <img src="{{asset('storage/image/'.$event->user->picture_user)}}"
                                     class="rounded-full -mt-6 border-4 object-center object-cover border-white mr-2 h-16 w-16">
                             </div>

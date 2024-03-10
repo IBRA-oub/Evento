@@ -35,7 +35,18 @@
 
                     @if (Route::has('login'))
                         @auth
-                            <a href="{{ url('/dashboard') }}" class="nav-link">Dashboard</a>
+                        @if(auth()->user()->role == 'client')
+
+                            <a href="{{ url('/client-reservation') }}" class="nav-link">Dashboard</a>
+                      
+                            @elseif(auth()->user()->role == 'organisateur')
+
+                            <a href="{{ url('/organisateur-dashboard') }}" class="nav-link">Dashboard</a>
+                       
+                            @elseif(auth()->user()->role == 'organisateur')
+
+                              <a href="{{ url('/admin-dashboard') }}" class="nav-link">Dashboard</a>
+                              @endif
                         @else
                         <a href="{{ route('login') }}" class="nav-link inline-block px-4 py-2 border border-white rounded hover:bg-white hover:text-blue-600">
                             Log in
@@ -139,9 +150,26 @@
                       <p class="text-xs">{{$eventDetaille->location}} </p>
                 </div>
             </div>
+           
+            @if(auth()->check()) 
+            @if(auth()->user()->role == 'client')
+                <div class="absolute right-10">
+                    <button type="submit" style="background-color: #225aad" class="ml-2 rounded-lg w-full py-2 px-20 mt-5 text-white font-bold">Buy ticket</button>
+                </div>
+                @elseif(auth()->user()->role == 'admin')
+
+                @elseif(auth()->user()->role == 'organisateur')
+            @endif
+        @else
+            
             <div class="absolute right-10">
-            <button type="submit" style="background-color: #225aad" class="ml-2 rounded-lg w-full py-2 px-20 mt-5 text-white font-bold">Buy tecket</button>
-           </div>
+                <a href="{{ route('login') }}" style="background-color: #225aad" class="ml-2 rounded-lg w-full py-2 px-20 mt-5 text-white font-bold">Login to buy ticket</a>
+            </div>
+        @endif
+           
+           
+
+           
         </form>
         </div>
         

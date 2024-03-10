@@ -29,9 +29,12 @@
                    
                
                 <li>   
-                    <a href="{{ route('login') }}" class="nav-link inline-block px-4 py-2 border border-white rounded hover:bg-white hover:text-blue-600">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                    <button class="nav-link inline-block px-4 py-2 border border-white rounded hover:bg-white hover:text-blue-600">
                         Log out
-                    </a>                
+                    </button>  
+                    </form>              
                 </li>
                 
             </ul>
