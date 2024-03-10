@@ -10,9 +10,7 @@ class OrganisateurController extends Controller
         return view('organisateur-pages.dashboard');
     }
 
-    public function confirmationTickets(){
-        return view('organisateur-pages.confirmation-tickets');
-    }
+   
 
    
 }

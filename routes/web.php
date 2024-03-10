@@ -52,15 +52,20 @@ Route::middleware(['auth', CheckRole::class . ':client'])->group(function () {
     Route::get('/client-tickets', [ReservationController::class, 'clientTichketsAffichage'])->name('client-tickets');
     Route::get('/client-reservation', [ReservationController::class, 'clientReservation'])->name('client-reservation');
     Route::post('/reservation', [ReservationController::class, 'createReservation'])->name('reservation.create');
+    Route::delete('/destroy-reservation/{id}/{eventId}', [ReservationController::class, 'destroy'])->name('destroy.reservation');
 
 });
 
 // ______________________organisateur pages________________________
 Route::middleware(['auth', CheckRole::class . ':organisateur'])->group(function () {
 
+    Route::get('/confirmation-tickets', [ReservationController::class, 'confirmationTickets'])->name('confirmation-tickets');
+    Route::put('/accepted-reservation/{id}', [ReservationController::class, 'acceptedReservation'])->name('accepted.reservation');
+    Route::put('/refused-event/{id}/{eventId}', [ReservationController::class, 'refusedReservation'])->name('refused.reservation');
+    
     Route::get('/organisateur-dashboard', [OrganisateurController::class, 'dashboard'])->name('organisateur-dashboard');
-    Route::get('/confirmation-tickets', [OrganisateurController::class, 'confirmationTickets'])->name('confirmation-tickets');
     Route::get('/creat-event', [CategoryController::class, 'redCategoriesOrga'])->name('creat-event');
+    
     Route::post('/event-store', [EventController::class, 'storeEvent'])->name('event.store');
     Route::get('/mes-events', [EventController::class, 'meEvents'])->name('me-events');
     Route::get('/edit-event/{id}', [EventController::class, 'editEvent'])->name('edit-event');

@@ -44,7 +44,13 @@
 
     {{-- _____________mes reservation_____________ --}}
 
-   
+    @if (session('success'))
+        <div id="success-alert" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">Success!</strong>
+            <span class="block sm:inline">{{ session('success') }}</span>
+        </div>
+        @endif
+        
         @if($clientReservation->isNotEmpty()) 
         @foreach($clientReservation as $reservation)
      
@@ -134,10 +140,14 @@
                                 
                                 {{-- ___________________edit button_____________ --}}
                                 @if($reservation->status === 'pending')
-                                 <a href=""
+                                <form action="{{route('destroy.reservation',['id'=>$reservation->id , 'eventId'=>$reservation->event->id])}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                 <button type="submit"
                                      class="mb-2 md:mb-0 bg-red-500 px-5 py-2 shadow-sm tracking-wider text-white rounded-full hover:bg-gray-800"
-                                     type="button" aria-label="like">Cancel reservation
-                                    </a>
+                                      aria-label="like">Cancel reservation
+                                    </button>
+                                </form>
                                 @endif
                              </div>
                          </div>
