@@ -170,7 +170,7 @@
         @else
             
             <div class="absolute right-10">
-                <a href="{{ route('login') }}" style="background-color: #225aad" class="ml-2 rounded-lg w-full py-2 px-20 mt-5 text-white font-bold">Login to buy ticket</a>
+                <a href="{{ route('login')}}" style="background-color: #225aad" class="ml-2 rounded-lg w-full py-2 px-20 mt-5 text-white font-bold">Login to buy ticket</a>
             </div>
         @endif
            

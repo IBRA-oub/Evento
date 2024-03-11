@@ -81,8 +81,14 @@
     </body>
     @else
 <body class="bg-black flex justify-center items-center h-screen">
+    <form method="POST" action="{{ route('logout') }}" class="absolute top-3 right-7">
+        @csrf
+    <button class="nav-link inline-block px-4 py-2 border bg-white text-black border-white rounded hover:bg-white hover:text-blue-600">
+        Log out
+    </button> 
+    </form> 
     <div class="loader">
-        <div data-glitch="YOUR ARE BANNED" class="glitch">YOUR ARE BANNED</div>
+        <div data-glitch="YOU ARE BANNED" class="glitch">YOU ARE BANNED</div>
      </div>
 </body>
     @endif

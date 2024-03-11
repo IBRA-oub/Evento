@@ -41,10 +41,11 @@
                 <input  id="password"   type="password" name="password" required autocomplete="current-password" >
                 <x-input-error :messages="$errors->get('password')"  style="color:red; font-size:12px; margin-top:2px;"/>
 
-                
                     @if (Route::has('password.request'))
                     <a href="{{ route('password.request') }}"> {{ __('Forgot your password?') }}</a>
                     @endif
+                    <a href="{{ route('register')}}">don't have account? register</a>
+                
                 <button>{{ __('Login') }}</button>
             </form>
         </div>

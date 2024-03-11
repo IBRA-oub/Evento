@@ -76,7 +76,7 @@
 
                             <a href="{{ url('/organisateur-dashboard') }}" class="nav-link">Dashboard</a>
                        
-                            @elseif(auth()->user()->role == 'organisateur')
+                            @elseif(auth()->user()->role == 'admin')
 
                               <a href="{{ url('/admin-dashboard') }}" class="nav-link">Dashboard</a>
                               @endif

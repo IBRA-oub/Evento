@@ -115,7 +115,7 @@
     </head>
     <body class="bg-black flex justify-center items-center h-screen">
     <div class="loader">
-        <div data-glitch="YOUR ARE BANNED" class="glitch">YOUR ARE BANNED</div>
+        <div data-glitch="YOU ARE BANNED" class="glitch">YOU ARE BANNED</div>
      </div>
 </body>
 </html>
