@@ -13,6 +13,7 @@ class Reservation extends Model
         'status',
         'event_id',
         'user_id',
+        'your_place'
     ];
 
     public function user(){
